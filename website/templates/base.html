@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <div class="logo"><a href="/"><i class="fas fa-graduation-cap"></i></a></div>
+                <div class="logo"><a href="/">E-Learning</a></div>
+
+                <ul class="links">
+                    <li><a href="/">Home</a></li>
+                    <li>
+                        <a href="#" class="desktop-link">Categories</a>
+                        <input type="checkbox" id="show-features">
+                        <label for="show-features">Categories</label>
+                        <ul>
+                            <li><a href="/category/Web-Development">Web Development</a></li>
+                            <li><a href="/category/Software-Development">Software Development</a></li>
+                            <li><a href="/category/Machine-Learning">Machine Learning</a></li>
+                            <li><a href="/category/Deep-Learning">Deep Learning</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="#">Contact Us</a></li> -->
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="#" class="desktop-link">Profile</a>
+                        <input type="checkbox" id="show-features">
+                        <label for="show-features">Profile</label>
+                        <ul>
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/account">Account</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            <form action="/search" method="POST" class="search-box">
+                <input name="search_term" type="text" placeholder="Type Something to Search..." required>
+                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </form>
+        </nav>
+    </div>
+    
+    <div class="page_content">{% block content %}{% endblock %}</div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Browse Categories</h4>
+                    <ul>
+                        <li><a href="/category/Web-Development">Web Development</a></li>
+                        <li><a href="/category/Software-Development">Software Development</a></li>
+                        <li><a href="/category/Machine-Learning">Machine Learning</a></li>
+                        <li><a href="/category/Deep-Learning">Deep Learning</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html
